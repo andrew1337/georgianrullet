@@ -28,9 +28,9 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
     display: grid;
     grid-template-rows: 1fr 3fr;
     align-items: center;
-    background: url('./assets/bg.png');
-    background-size: 67%;
-    background-position: center;
+    background: url('./assets/background.png');
+    background-size: 100%;
+    background-position: 8px 0;
     background-repeat: no-repeat;
 }
 

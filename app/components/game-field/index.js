@@ -1,6 +1,8 @@
 // GameField component
 import React from 'react';
 import styles from './index.css';
+import Image from 'next/image';
+import chip from '../../assets/chip.svg';
 
   const columns = [1, 2, 0];
 
@@ -16,7 +18,14 @@ import styles from './index.css';
 const renderCell = (boardState, item, users, userId) => {
   const [num, isRed] = item;
   if (boardState.includes(num) && num !== 0) {
-    return <div key={num} className={isRed ? 'cell red' : 'cell'}>{num} ({users[userId]})</div>;      
+    return (
+      <div key={num} className={isRed ? 'cell red' : 'cell'}>
+        <div className='chip'>
+          <Image className='chip-icon' src={chip} alt='*'/>
+          <span className='chip-name'>{users[userId]}</span>
+        </div>
+      </div>
+    );      
   }
   return <div key={num} className={isRed ? 'cell red' : 'cell'}>{num}</div>;
 }
@@ -24,7 +33,7 @@ const renderCell = (boardState, item, users, userId) => {
 const GameField = ({ users, boardState }) => {
   return (
     <div className="game-field">
-        <div className="top">0 ({users[3]})</div>
+        <div className="top">0</div>
         <div className="table">
           {tableData.map((column, index) => (
             <div key={index} className="column">
