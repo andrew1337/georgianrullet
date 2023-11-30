@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './index.css';
 
-  const numbers = Array.from({ length: 34 }, (_, i) => i).slice(1); // Create an array from 1 to 34
+  const numbers = Array.from({ length: 37 }, (_, i) => i).slice(1); // Create an array from 1 to 36
   const columns = [1, 2, 0];
 
   const tableData = columns.reduce((memo, remainder) => {

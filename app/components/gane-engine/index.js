@@ -14,7 +14,7 @@ const NumberHistory = ({boardState, onSubmit}) => {
     const div = userNum % 3;  // tricky logic here
     let userToMove = NaN;
     if (div === 0) {
-      userToMove = 3;
+      userToMove = 2;
     } else if (div === 1) {
       userToMove = 0;
     } else if (div === 2) {
@@ -28,7 +28,7 @@ const NumberHistory = ({boardState, onSubmit}) => {
   const doMove = () => {
     const numberValue = parseInt(currentNumber, 10);
     
-    if (isNaN(numberValue) || numberValue < 0 || numberValue > 34) return setCurrentNumber('');
+    if (isNaN(numberValue) || numberValue < 0 || numberValue > 37) return setCurrentNumber('');
 
     setNumbers([...numbers, numberValue]);
     setCurrentNumber('');
