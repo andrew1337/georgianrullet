@@ -14,8 +14,11 @@ const YourPage = () => {
   const [bank, setBank] = useState(12000);
   const [usersBalance, setUsersBalance] = useState([2000, 2000, 2000, 2000]);
   const [boardState, setBoardState] = useState([1,2,3]); // initial position for each user who moves
+
   const handleSetUsers = useCallback((value) => setUsers(value), [])
   const handleChange = useCallback((value) => setBoardState(value), [])
+  const handleUserBalance = useCallback((value) => setUsersBalance(value), [])
+  const handleBank = useCallback((value) => setBank(value), [])
 
   return (
     <>
@@ -26,12 +29,19 @@ const YourPage = () => {
       </div>
       <div className='content'>
           <div id='stream'></div>
-          <Results users={users} balances={usersBalance} />
+          <Results users={users} balances={usersBalance} bank={bank} />
       </div>
     </div>
     <div className='control-panel'>
       <UserNames users={users} setUsers={handleSetUsers} />
-      <NumberHistory boardState={boardState} onSubmit={handleChange} />
+      <NumberHistory 
+      boardState={boardState} 
+      onSubmit={handleChange} 
+      bank={bank} 
+      onChangeBank={handleBank}
+      balances={usersBalance}
+      onChangeUserBalance={handleUserBalance}
+      />
     </div>
     </>
   );

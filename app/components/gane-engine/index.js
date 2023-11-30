@@ -1,7 +1,7 @@
 import { Gamja_Flower } from 'next/font/google';
 import React, { useState } from 'react';
 
-const NumberHistory = ({boardState, onSubmit}) => {
+const NumberHistory = ({boardState, onSubmit, bank, onChangeBank, balances, onChangeUserBalance}) => {
   const [numbers, setNumbers] = useState([]);
   const [currentNumber, setCurrentNumber] = useState('');
   const [gameIsEnabled, setGameIsEnabled] = useState(true);
@@ -10,36 +10,38 @@ const NumberHistory = ({boardState, onSubmit}) => {
     setCurrentNumber(event.target.value);
   };
 
-const cslculatePrize = () => {
-  // this function will increase i-th user's balance
-  // by 1000 first time, by 2000 second time and 
-  // the last will increase it by rest of shared amount of money
+const giveOutPrizes = (currentPosition, userIndex) => {
+  let amount;
+  if ([1, 2, 3].includes(currentPosition)) {
+    amount = 1000;
+  } else if ([13, 14, 15].includes(currentPosition)) {
+    amount = 2000;
+  } else if ([0, 25, 26, 27].includes(currentPosition)) {
+    amount = bank;
+  }
+  const updatedUserBalance = [...balances];
+  updatedUserBalance[userIndex] += amount;
+  onChangeUserBalance(updatedUserBalance);
+  onChangeBank(bank - amount);
+}
 
+const getCurrentUserIdBySpinValue = (currentSpinValue) => {
+  if (currentSpinValue === 0) {
+    return 3
+  }
+  const indexMap = { 0: 2, 1: 0, 2: 1 };
+  return indexMap[currentSpinValue % 3];
 }
 
 const doStepForUsers = (boardState, currentSpinValue) => {
-  let usersIndex;
-
-  switch (currentSpinValue % 3) {
-    case 0:
-      usersIndex = 2;
-      break;
-    case 1:
-      usersIndex = 0;
-      break;
-    case 2:
-      usersIndex = 1;
-      break;
-  }
-
+  const usersIndex = getCurrentUserIdBySpinValue(currentSpinValue);
+  const currentPosition = boardState[usersIndex];
+  
   const updatedBoardState = [...boardState];
-  const isFinalNumbers =
-    updatedBoardState[usersIndex] === 25 ||
-    updatedBoardState[usersIndex] === 26 ||
-    updatedBoardState[usersIndex] === 27;
+  const isFinalNumbers = [25, 26, 27].includes(updatedBoardState[usersIndex]);
 
   updatedBoardState[usersIndex] += isFinalNumbers ? 9 : 12;
-  
+  giveOutPrizes(currentPosition, usersIndex);
   onSubmit(updatedBoardState);
   return isFinalNumbers;
 };
@@ -52,12 +54,11 @@ const doMove = () => {
   setNumbers([...numbers, parsedNumber]);
   setCurrentNumber('');
   if (parsedNumber === 0) {
-    // cslculatePrize();
+    giveOutPrizes(0, 3);
     return setGameIsEnabled(false);
   }
   let wasFinalNumber = doStepForUsers(boardState, parsedNumber);
   if (wasFinalNumber) {
-    // cslculatePrize();
     return setGameIsEnabled(false);
   }
 
@@ -67,11 +68,13 @@ const doMove = () => {
     setNumbers([]);
     setCurrentNumber('');
     onSubmit([1,2,3]);
-    setGameIsEnabled(true)
+    setGameIsEnabled(true);
+    onChangeBank(12000);
+    onChangeUserBalance([2000, 2000, 2000, 2000]);
   };
 
   return (
-    <div className="">
+    <div className="control-panel">
       <h2 className="">Number History</h2>
       <div className="">
         <input

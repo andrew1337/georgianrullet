@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.css';
 
-export const Results = ({ users, balances }) => {
+export const Results = ({ users, balances, bank}) => {
   return (
     <table className="results">
       <thead>
@@ -9,6 +9,7 @@ export const Results = ({ users, balances }) => {
           {users.map((user, index) => (
             <th key={index} className="user-name">{user}</th>
           ))}
+          <th className="user-name">Bank</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,7 @@ export const Results = ({ users, balances }) => {
               {balance}
             </td>
           ))}
+          <td className="user-balance bank" >{bank}</td>
         </tr>
       </tbody>
     </table>

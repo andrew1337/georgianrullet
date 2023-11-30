@@ -17,3 +17,7 @@
     padding: 6px 12px;
     text-align: center;   
 }
+
+.user-balance.bank {
+    border-left: 2px solid black;
+}
