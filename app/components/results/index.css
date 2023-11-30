@@ -1,0 +1,19 @@
+.results {
+    background: #f5821f;
+    padding: 12px;
+}
+
+.user-name {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-bottom: 2px solid black;
+    height: 38px;
+}
+
+.user-balance {
+    font-size: 30px;
+    font-weight: 700;
+    padding: 6px 12px;
+    text-align: center;   
+}

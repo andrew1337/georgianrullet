@@ -71,9 +71,9 @@ const doMove = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 rounded-md shadow-md justify-center">
-      <h2 className="text-lg font-semibold mb-4">Number History</h2>
-      <div className="mb-4">
+    <div className="">
+      <h2 className="">Number History</h2>
+      <div className="">
         <input
           type="number"
           min="0"
@@ -82,22 +82,22 @@ const doMove = () => {
           value={currentNumber}
           disabled={!gameIsEnabled}
           onChange={handleNumberInput}
-          className="w-full px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+          className=""
         />
       </div>
-      <div className="flex gap-4 mb-6">
+      <div className="">
         <button 
         onClick={doMove} 
         disabled={!gameIsEnabled}
-        className="px-6 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none">
+        className="">
           Move Users
         </button>
-        <button onClick={resetGame} className="px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none">
+        <button onClick={resetGame} className="">
           Reset Game
         </button>
       </div>
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-2">Number History:</h3>
+      <div className="">
+        <h3 className="">Number History:</h3>
         <ul>
           {numbers.map((number, index) => (
             <li key={index}>Spin  {index + 1}, value: {number}</li>

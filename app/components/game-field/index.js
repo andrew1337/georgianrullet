@@ -2,34 +2,36 @@
 import React from 'react';
 import styles from './index.css';
 
-  const numbers = Array.from({ length: 37 }, (_, i) => i).slice(1); // Create an array from 1 to 36
   const columns = [1, 2, 0];
 
+  const list = [
+    [1, true], [2, false], [3, true], [4, false], [5, true], [6, false], [7, true], [8, false], [9, true], [10, false], [11, false], [12, true], [13, false], [14, true], [15, false], [16, true], [17, false], [18, true], [19, true], [20, false], [21, true], [22, false], [23,true], [24, false], [25, true], [26, false], [27, true], [28, false], [29, false], [30, true], [31, false], [32, true], [33, false], [34, true], [35, false], [36, true]
+  ]
+
   const tableData = columns.reduce((memo, remainder) => {
-    memo.push(numbers.filter((num) => num % 3 === remainder))
+    memo.push(list.filter((num) => num[0] % 3 === remainder))
     return memo
   }, [])
 
-const renderCell = (boardState, num, users, userId) => {
+const renderCell = (boardState, item, users, userId) => {
+  const [num, isRed] = item;
   if (boardState.includes(num) && num !== 0) {
-      return <div key={num}>{num} ({users[userId]})</div>;      
+    return <div key={num} className={isRed ? 'cell red' : 'cell'}>{num} ({users[userId]})</div>;      
   }
-  return <div key={num}>{num}</div>;
+  return <div key={num} className={isRed ? 'cell red' : 'cell'}>{num}</div>;
 }
 
 const GameField = ({ users, boardState }) => {
   return (
     <div className="game-field">
-      <div className="top-row flex justify-center items-center">
-        <div className="border px-4 py-2 gap-2 rounded-md">0 ({users[3]})</div>
-      </div>
-      <div className="grid grid-cols-3 gap-4 mt-4">
-        {tableData.map((item, index) => (
-          <div key={index} className="column flex flex-col items-center gap-2">
-            {item.map((num) => renderCell(boardState, num, users, index))}
-          </div>
-        ))}
-      </div>
+        <div className="top">0 ({users[3]})</div>
+        <div className="table">
+          {tableData.map((column, index) => (
+            <div key={index} className="column">
+              {column.map((item) => renderCell(boardState, item, users, index))}
+            </div>
+          ))}
+        </div>
     </div>
   );
 };
