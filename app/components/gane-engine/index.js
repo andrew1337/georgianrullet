@@ -10,37 +10,58 @@ const NumberHistory = ({boardState, onSubmit}) => {
     setCurrentNumber(event.target.value);
   };
 
-  const doStepForUsers = (boardState, userNum) => {
-    let userToMove;
-    switch (userNum % 3) {
-      case 0:
-        userToMove = 2;
-        break;
-      case 1:
-        userToMove = 0;
-        break;
-      case 2:
-        userToMove = 1;
-        break;
-    }
-    const updatedBoardState = [...boardState];
-    updatedBoardState[userToMove] += 12;
-    onSubmit(updatedBoardState);
-  };
+const cslculatePrize = () => {
+  // this function will increase i-th user's balance
+  // by 1000 first time, by 2000 second time and 
+  // the last will increase it by rest of shared amount of money
 
-  const doMove = () => {
-    const numberValue = parseInt(currentNumber, 10);
-    
-    if (isNaN(numberValue) || numberValue < 0 || numberValue > 37) return setCurrentNumber('');
+}
 
-    setNumbers([...numbers, numberValue]);
-    setCurrentNumber('');
-    if (numberValue === 0) return setGameIsEnabled(false);
-    doStepForUsers(boardState, numberValue);
-    if (boardState.includes(25) || boardState.includes(26) || boardState.includes(27)) {
-      setGameIsEnabled(false);
-    }
-  };
+const doStepForUsers = (boardState, currentSpinValue) => {
+  let usersIndex;
+
+  switch (currentSpinValue % 3) {
+    case 0:
+      usersIndex = 2;
+      break;
+    case 1:
+      usersIndex = 0;
+      break;
+    case 2:
+      usersIndex = 1;
+      break;
+  }
+
+  const updatedBoardState = [...boardState];
+  const isFinalNumbers =
+    updatedBoardState[usersIndex] === 25 ||
+    updatedBoardState[usersIndex] === 26 ||
+    updatedBoardState[usersIndex] === 27;
+
+  updatedBoardState[usersIndex] += isFinalNumbers ? 9 : 12;
+  
+  onSubmit(updatedBoardState);
+  return isFinalNumbers;
+};
+
+const doMove = () => {
+  const parsedNumber = parseInt(currentNumber, 10);
+  
+  if (isNaN(parsedNumber) || parsedNumber < 0 || parsedNumber > 37) return setCurrentNumber('');
+
+  setNumbers([...numbers, parsedNumber]);
+  setCurrentNumber('');
+  if (parsedNumber === 0) {
+    // cslculatePrize();
+    return setGameIsEnabled(false);
+  }
+  let wasFinalNumber = doStepForUsers(boardState, parsedNumber);
+  if (wasFinalNumber) {
+    // cslculatePrize();
+    return setGameIsEnabled(false);
+  }
+
+};
 
   const resetGame = () => {
     setNumbers([]);
@@ -48,6 +69,7 @@ const NumberHistory = ({boardState, onSubmit}) => {
     onSubmit([1,2,3]);
     setGameIsEnabled(true)
   };
+
   return (
     <div className="p-6 bg-gray-100 rounded-md shadow-md justify-center">
       <h2 className="text-lg font-semibold mb-4">Number History</h2>
@@ -78,7 +100,7 @@ const NumberHistory = ({boardState, onSubmit}) => {
         <h3 className="text-lg font-semibold mb-2">Number History:</h3>
         <ul>
           {numbers.map((number, index) => (
-            <li key={index}>Roll {index + 1} - {number}</li>
+            <li key={index}>Spin  {index + 1}, value: {number}</li>
           ))}
         </ul>
       </div>
