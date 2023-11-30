@@ -11,17 +11,20 @@ const NumberHistory = ({boardState, onSubmit}) => {
   };
 
   const doStepForUsers = (boardState, userNum) => {
-    const div = userNum % 3;  // tricky logic here
-    let userToMove = NaN;
-    if (div === 0) {
-      userToMove = 2;
-    } else if (div === 1) {
-      userToMove = 0;
-    } else if (div === 2) {
-      userToMove = 1;
+    let userToMove;
+    switch (userNum % 3) {
+      case 0:
+        userToMove = 2;
+        break;
+      case 1:
+        userToMove = 0;
+        break;
+      case 2:
+        userToMove = 1;
+        break;
     }
     const updatedBoardState = [...boardState];
-    updatedBoardState[userToMove] = updatedBoardState[userToMove] + 12;
+    updatedBoardState[userToMove] += 12;
     onSubmit(updatedBoardState);
   };
 
