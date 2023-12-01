@@ -9,7 +9,7 @@ export const UserNames = ({ users, setUsers }) => {
   }
   return (
     <div className="">
-      <table className="users">
+      <table className="">
         <thead>
           <tr>
             <th className="">Player 1</th>
