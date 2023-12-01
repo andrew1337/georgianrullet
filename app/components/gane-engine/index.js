@@ -1,8 +1,7 @@
-import { Gamja_Flower } from 'next/font/google';
+import styles from './index.css';
 import React, { useState } from 'react';
 
 const NumberHistory = ({boardState, onSubmit, bank, onChangeBank, balances, onChangeUserBalance}) => {
-  const [numbers, setNumbers] = useState([]);
   const [currentNumber, setCurrentNumber] = useState('');
   const [gameIsEnabled, setGameIsEnabled] = useState(true);
 
@@ -51,7 +50,6 @@ const doMove = () => {
   
   if (isNaN(parsedNumber) || parsedNumber < 0 || parsedNumber > 37) return setCurrentNumber('');
 
-  setNumbers([...numbers, parsedNumber]);
   setCurrentNumber('');
   if (parsedNumber === 0) {
     giveOutPrizes(0, 3);
@@ -65,7 +63,6 @@ const doMove = () => {
 };
 
   const resetGame = () => {
-    setNumbers([]);
     setCurrentNumber('');
     onSubmit([1,2,3]);
     setGameIsEnabled(true);
@@ -74,9 +71,7 @@ const doMove = () => {
   };
 
   return (
-    <div className="control-panel">
-      <h2 className="">Number History</h2>
-      <div className="">
+    <div className="stepper">
         <input
           type="number"
           min="0"
@@ -87,8 +82,6 @@ const doMove = () => {
           onChange={handleNumberInput}
           className=""
         />
-      </div>
-      <div className="">
         <button 
         onClick={doMove} 
         disabled={!gameIsEnabled}
@@ -98,15 +91,6 @@ const doMove = () => {
         <button onClick={resetGame} className="">
           Reset Game
         </button>
-      </div>
-      <div className="">
-        <h3 className="">Number History:</h3>
-        <ul>
-          {numbers.map((number, index) => (
-            <li key={index}>Spin  {index + 1}, value: {number}</li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };

@@ -9,13 +9,14 @@ export const UserNames = ({ users, setUsers }) => {
   }
   return (
     <div className="">
-      <table className="">
+      <table className="users">
         <thead>
           <tr>
             <th className="">Player 1</th>
             <th className="">Player 2</th>
             <th className="">Player 3</th>
             <th className="">Player 0</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -52,10 +53,12 @@ export const UserNames = ({ users, setUsers }) => {
                 className=""
               />
             </td>
+            <td>
+            <button onClick={() => setUsers(['', '', '', ''])} className="">Reset Players</button>
+            </td>
           </tr>
         </tbody>
       </table>
-      <button onClick={() => setUsers(['', '', '', ''])} className="">Reset Players</button>
     </div>
   );
 };
