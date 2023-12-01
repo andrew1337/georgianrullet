@@ -1,12 +1,11 @@
 'use client'
 
 import React, { useCallback, useState } from 'react';
-import Image from 'next/image';
 import GameField from './components/game-field';
 import { UserNames } from './components/users-table';
 import NumberHistory from './components/gane-engine';
 import { Results } from './components/results';
-import logo from './assets/logo.webp';
+import { useUserMedia } from './useUserMedia';
 
 const YourPage = () => {
   // Sample users data
@@ -19,6 +18,8 @@ const YourPage = () => {
   const handleChange = useCallback((value) => setBoardState(value), [])
   const handleUserBalance = useCallback((value) => setUsersBalance(value), [])
   const handleBank = useCallback((value) => setBank(value), [])
+  
+  const { stream, error } = useUserMedia({ audio: false, video: true });
 
   return (
     <>
@@ -28,7 +29,17 @@ const YourPage = () => {
         <GameField users={users} boardState={boardState} />
       </div>
       <div className='content'>
-          <div id='stream'></div>
+          <div id='stream'>
+          {error ? 
+            (<p>error running vudeo</p>) 
+            : 
+            (<video className='video'
+                    muted
+                    autoPlay
+                    ref={video => {if (video) {video.srcObject = stream;}}}
+                    />
+            )}
+          </div>
           <Results users={users} balances={usersBalance} bank={bank} />
       </div>
     </div>
