@@ -4,15 +4,15 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export default function useLocalStorage<T>(
   key: string,
-  initialValue: T
+  initialValue: T,
 ): [T, Dispatch<SetStateAction<T>>] {
   const [storedValue, setStoredValue] = useState(initialValue);
- // We will use this flag to trigger the reading from localStorage
+  // We will use this flag to trigger the reading from localStorage
   const [firstLoadDone, setFirstLoadDone] = useState(false);
 
- // Use an effect hook in order to prevent SSR inconsistencies and errors.
- // This will update the state with the value from the local storage after
- // the first initial value is applied.
+  // Use an effect hook in order to prevent SSR inconsistencies and errors.
+  // This will update the state with the value from the local storage after
+  // the first initial value is applied.
   useEffect(() => {
     const fromLocal = () => {
       if (typeof window === "undefined") {
@@ -29,9 +29,9 @@ export default function useLocalStorage<T>(
 
     // Set the value from localStorage
     setStoredValue(fromLocal());
-   // First load is done
+    // First load is done
     setFirstLoadDone(true);
-  }, [key]);  // eslint-disable-line react-hooks/exhaustive-deps
+  }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function setLocalValue(value: T) {
     if (!firstLoadDone) {
@@ -42,10 +42,12 @@ export default function useLocalStorage<T>(
       if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(value));
         // Trigger an event to notify other tabs of the data change
-        window.dispatchEvent(new StorageEvent("storage", {
-          key,
-          newValue: JSON.stringify(value)
-        }));
+        window.dispatchEvent(
+          new StorageEvent("storage", {
+            key,
+            newValue: JSON.stringify(value),
+          }),
+        );
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +65,7 @@ export default function useLocalStorage<T>(
   };
 
   useEffect(() => {
-  const handleStorageChange = (event: StorageEvent) => {
+    const handleStorageChange = (event: StorageEvent) => {
       if (event.key === key && event.newValue) {
         setStoredValue(JSON.parse(event.newValue));
       }

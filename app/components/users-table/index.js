@@ -1,14 +1,16 @@
-import React from 'react';
-import './index.css';
+import React from "react";
+import "./index.css";
 
 const UserNames = ({ usernames, setUsers }) => {
   const handleUserInput = (event, index) => {
-    console.log(index, event.target.value)
-    setUsers(usernames.map((user, i) => (i === index ? event.target.value : user)));
-  }
+    console.log(index, event.target.value);
+    setUsers(
+      usernames.map((user, i) => (i === index ? event.target.value : user)),
+    );
+  };
   return (
     <div>
-      <table className='usernames-table'>
+      <table className="usernames-table">
         <thead>
           <tr>
             <th>Player 1</th>
@@ -26,12 +28,14 @@ const UserNames = ({ usernames, setUsers }) => {
                   type="text"
                   value={username}
                   onChange={(event) => handleUserInput(event, index)}
-                  placeholder='Enter player name'
+                  placeholder="Enter player name"
                 />
               </td>
             ))}
             <td>
-              <button onClick={() => setUsers(['', '', '', ''])}>Reset Players</button>
+              <button onClick={() => setUsers(["", "", "", ""])}>
+                Reset Players
+              </button>
             </td>
           </tr>
         </tbody>

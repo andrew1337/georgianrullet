@@ -1,13 +1,15 @@
-import React from 'react';
-import './index.css';
+import React from "react";
+import "./index.css";
 
-export const Results = ({ usernames, balances, bank}) => {
+export const Results = ({ usernames, balances, bank }) => {
   return (
     <table className="results">
       <thead>
         <tr>
           {usernames.map((username, index) => (
-            <th key={index} className="user-name">{username}</th>
+            <th key={index} className="user-name">
+              {username}
+            </th>
           ))}
           <th className="user-name">Bank</th>
         </tr>
@@ -19,7 +21,7 @@ export const Results = ({ usernames, balances, bank}) => {
               {balance}
             </td>
           ))}
-          <td className="user-balance bank" >{bank}</td>
+          <td className="user-balance bank">{bank}</td>
         </tr>
       </tbody>
     </table>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useUserMedia = constraints => {
+export const useUserMedia = (constraints) => {
   const [stream, setStream] = useState(null);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -20,10 +20,10 @@ export const useUserMedia = constraints => {
       didCancel = true;
       if (!stream) return;
       if (stream?.getVideoTracks) {
-        stream.getVideoTracks().map(track => track.stop());
+        stream.getVideoTracks().map((track) => track.stop());
       }
       if (stream?.getAudioTracks) {
-        stream.getAudioTracks().map(track => track.stop());
+        stream.getAudioTracks().map((track) => track.stop());
       }
       if (stream?.stop) {
         stream.stop();
