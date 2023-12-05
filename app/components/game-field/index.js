@@ -1,6 +1,6 @@
 // GameField component
 import React from 'react';
-import styles from './index.css';
+import './index.css';
 import Image from 'next/image';
 import chip from '../../assets/chip.svg';
 

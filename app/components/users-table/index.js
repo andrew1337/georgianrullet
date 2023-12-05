@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import styles from './index.css';
+import React from 'react';
+import './index.css';
 
 const UserNames = ({ usernames, setUsers }) => {
   const handleUserInput = (event, index) => {

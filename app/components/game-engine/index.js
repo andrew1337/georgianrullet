@@ -1,4 +1,4 @@
-import styles from './index.css';
+import './index.css';
 import React, { useState } from 'react';
 
 const GameEngine = ({boardState, onChangeBoardState, bank, onChangeBank, balances, onChangeUserBalance}) => {

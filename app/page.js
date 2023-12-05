@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import GameField from './components/game-field';
 import { Results } from './components/results';
 import { useUserMedia } from './useUserMedia';
