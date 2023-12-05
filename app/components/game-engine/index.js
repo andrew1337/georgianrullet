@@ -1,7 +1,7 @@
 import styles from './index.css';
 import React, { useState } from 'react';
 
-const NumberHistory = ({boardState, onSubmit, bank, onChangeBank, balances, onChangeUserBalance}) => {
+const GameEngine = ({boardState, onChangeBoardState, bank, onChangeBank, balances, onChangeUserBalance}) => {
   const [currentNumber, setCurrentNumber] = useState('');
   const [gameIsEnabled, setGameIsEnabled] = useState(true);
 
@@ -41,7 +41,7 @@ const doStepForUsers = (boardState, currentSpinValue) => {
 
   updatedBoardState[usersIndex] += isFinalNumbers ? 9 : 12;
   giveOutPrizes(currentPosition, usersIndex);
-  onSubmit(updatedBoardState);
+  onChangeBoardState(updatedBoardState);
   return isFinalNumbers;
 };
 
@@ -64,10 +64,11 @@ const doMove = () => {
 
   const resetGame = () => {
     setCurrentNumber('');
-    onSubmit([1,2,3]);
+    onChangeBoardState([1,2,3]);
     setGameIsEnabled(true);
     onChangeBank(12000);
     onChangeUserBalance([2000, 2000, 2000, 2000]);
+    // remove users
   };
 
   return (
@@ -80,19 +81,17 @@ const doMove = () => {
           value={currentNumber}
           disabled={!gameIsEnabled}
           onChange={handleNumberInput}
-          className=""
         />
         <button 
         onClick={doMove} 
-        disabled={!gameIsEnabled}
-        className="">
+        disabled={!gameIsEnabled}>
           Move Users
         </button>
-        <button onClick={resetGame} className="">
+        <button onClick={resetGame}>
           Reset Game
         </button>
     </div>
   );
 };
 
-export default NumberHistory;
+export default GameEngine;

@@ -15,14 +15,14 @@ import chip from '../../assets/chip.svg';
     return memo
   }, [])
 
-const renderCell = (boardState, item, users, userId) => {
+const renderCell = (boardState, item, usernames, userId) => {
   const [num, isRed] = item;
   if (boardState.includes(num) && num !== 0) {
     return (
       <div key={num} className={isRed ? 'cell red' : 'cell'}>
         <div className='chip'>
           <Image className='chip-icon' src={chip} alt='*'/>
-          <span className='chip-name'>{users[userId]}</span>
+          <span className='chip-name'>{usernames[userId]}</span>
         </div>
       </div>
     );      
@@ -30,14 +30,14 @@ const renderCell = (boardState, item, users, userId) => {
   return <div key={num} className={isRed ? 'cell red' : 'cell'}>{num}</div>;
 }
 
-const GameField = ({ users, boardState }) => {
+const GameField = ({ usernames, boardState }) => {
   return (
     <div className="game-field">
         <div className="top">0</div>
         <div className="table">
           {tableData.map((column, index) => (
             <div key={index} className="column">
-              {column.map((item) => renderCell(boardState, item, users, index))}
+              {column.map((item) => renderCell(boardState, item, usernames, index))}
             </div>
           ))}
         </div>

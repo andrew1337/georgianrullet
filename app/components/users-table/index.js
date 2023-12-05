@@ -1,60 +1,37 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styles from './index.css';
 
-export const UserNames = ({ users, setUsers }) => {
+const UserNames = ({ usernames, setUsers }) => {
   const handleUserInput = (event, index) => {
-    const newUsers = [...users];
-    newUsers[index] = event.target.value;
-    setUsers(newUsers);
+    console.log(index, event.target.value)
+    setUsers(usernames.map((user, i) => (i === index ? event.target.value : user)));
   }
   return (
-    <div className="">
-      <table className="">
+    <div>
+      <table className='usernames-table'>
         <thead>
           <tr>
-            <th className="">Player 1</th>
-            <th className="">Player 2</th>
-            <th className="">Player 3</th>
-            <th className="">Player 0</th>
+            <th>Player 1</th>
+            <th>Player 2</th>
+            <th>Player 3</th>
+            <th>Player 0</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td className="">
-              <input
-                type="text"
-                value={users[0]}
-                onChange={(event) => handleUserInput(event, 0)}
-                className=""
-              />
-            </td>
-            <td className="">
-              <input
-                type="text"
-                value={users[1]}
-                onChange={(event) => handleUserInput(event, 1)}
-                className=""
-              />
-            </td>
-            <td className="">
-              <input
-                type="text"
-                value={users[2]}
-                onChange={(event) => handleUserInput(event, 2)}
-                className=""
-              />
-            </td>
-            <td className="">
-              <input
-                type="text"
-                value={users[3]}
-                onChange={(event) => handleUserInput(event, 3)}
-                className=""
-              />
-            </td>
+            {usernames.map((username, index) => (
+              <td key={index}>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(event) => handleUserInput(event, index)}
+                  placeholder='Enter player name'
+                />
+              </td>
+            ))}
             <td>
-            <button onClick={() => setUsers(['', '', '', ''])} className="">Reset Players</button>
+              <button onClick={() => setUsers(['', '', '', ''])}>Reset Players</button>
             </td>
           </tr>
         </tbody>
@@ -62,3 +39,5 @@ export const UserNames = ({ users, setUsers }) => {
     </div>
   );
 };
+
+export default UserNames;

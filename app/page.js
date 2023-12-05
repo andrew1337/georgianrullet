@@ -2,31 +2,22 @@
 
 import React, { useCallback, useState } from 'react';
 import GameField from './components/game-field';
-import { UserNames } from './components/users-table';
-import NumberHistory from './components/gane-engine';
 import { Results } from './components/results';
 import { useUserMedia } from './useUserMedia';
+import useLocalStorage from './useLocalStorage.ts';
 
-const YourPage = () => {
-  // Sample users data
-  const [users, setUsers] = useState(['', '', '', '']); // users without names (first 3 is moving, last is 0)
-  const [bank, setBank] = useState(12000);
-  const [usersBalance, setUsersBalance] = useState([2000, 2000, 2000, 2000]);
-  const [boardState, setBoardState] = useState([1,2,3]); // initial position for each user who moves
-
-  const handleSetUsers = useCallback((value) => setUsers(value), [])
-  const handleChange = useCallback((value) => setBoardState(value), [])
-  const handleUserBalance = useCallback((value) => setUsersBalance(value), [])
-  const handleBank = useCallback((value) => setBank(value), [])
+const MainPage = () => {
+  const [usernames, setUsers] = useLocalStorage('usernames',['', '', '', '']); // users without names (first 3 is moving, last is 0)
+  const [boardState, setBoardState] = useLocalStorage('boardState', [1,2,3]);  // initial position for each user who moves
+  const [bank, setBank] = useLocalStorage('bank', 12000);
+  const [balances, setUsersBalance] = useLocalStorage('balances', [2000, 2000, 2000, 2000]);
   
   const { stream, error } = useUserMedia({ audio: false, video: true });
 
   return (
-    <>
     <div className='main'>
       <div className='desc'>
-        <div/>
-        <GameField users={users} boardState={boardState} />
+        <GameField  usernames={usernames} boardState={boardState} />
       </div>
       <div className='content'>
           <div id='stream'>
@@ -40,22 +31,10 @@ const YourPage = () => {
                     />
             )}
           </div>
-          <Results users={users} balances={usersBalance} bank={bank} />
+          <Results usernames={usernames} balances={balances} bank={bank} />
       </div>
     </div>
-    <div className='control-panel'>
-      <UserNames users={users} setUsers={handleSetUsers} />
-      <NumberHistory 
-      boardState={boardState} 
-      onSubmit={handleChange} 
-      bank={bank} 
-      onChangeBank={handleBank}
-      balances={usersBalance}
-      onChangeUserBalance={handleUserBalance}
-      />
-    </div>
-    </>
   );
 };
 
-export default YourPage;
+export default MainPage;
