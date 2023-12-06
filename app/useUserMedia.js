@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useUserMedia = (constraints) => {
+const useUserMedia = (constraints) => {
   const [stream, setStream] = useState(null);
   const [error, setError] = useState(null);
   useEffect(() => {
@@ -28,9 +28,12 @@ export const useUserMedia = (constraints) => {
       if (stream?.stop) {
         stream.stop();
       }
+      return undefined;
     };
     getUserMedia();
     return cancel;
   }, [constraints, stream, error]);
   return { stream, error };
 };
+
+export default useUserMedia;

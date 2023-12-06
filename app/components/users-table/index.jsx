@@ -17,7 +17,7 @@ const UserNames = ({ usernames, setUsers }) => {
             <th>Player 2</th>
             <th>Player 3</th>
             <th>Player 0</th>
-            <th></th>
+            <th>.</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@ const UserNames = ({ usernames, setUsers }) => {
               </td>
             ))}
             <td>
-              <button onClick={() => setUsers(["", "", "", ""])}>
+              <button type="button" onClick={() => setUsers(["", "", "", ""])}>
                 Reset Players
               </button>
             </td>

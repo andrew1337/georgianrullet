@@ -69,19 +69,17 @@ const renderCell = (boardState, item, usernames, userId) => {
   );
 };
 
-function GameField({ usernames, boardState }) {
-  return <div className="game-field">
-      <div className="top">0</div>
-      <div className="table">
-        {tableData.map((column, index) => (
-          <div key={index} className="column">
-            {column.map((item) =>
-              renderCell(boardState, item, usernames, index),
-            )}
-          </div>
-        ))}
-      </div>
+const GameField = ({ usernames, boardState }) => (
+  <div className="game-field">
+    <div className="top">0</div>
+    <div className="table">
+      {tableData.map((column, index) => (
+        <div key={index} className="column">
+          {column.map((item) => renderCell(boardState, item, usernames, index))}
+        </div>
+      ))}
     </div>
-}
+  </div>
+);
 
 export default GameField;

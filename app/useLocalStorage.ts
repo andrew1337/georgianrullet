@@ -22,7 +22,7 @@ export default function useLocalStorage<T>(
         const item = window.localStorage.getItem(key);
         return item ? (JSON.parse(item) as T) : initialValue;
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return initialValue;
       }
     };
@@ -50,7 +50,7 @@ export default function useLocalStorage<T>(
         );
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

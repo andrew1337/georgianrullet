@@ -1,4 +1,5 @@
 import "./globals.css";
+import React from "react";
 
 export const metadata = {
   title: "Rulette",
@@ -8,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

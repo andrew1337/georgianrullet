@@ -1,14 +1,14 @@
 import "./index.css";
 import React, { useState } from "react";
 
-function GameEngine({
+const GameEngine = ({
   boardState,
   onChangeBoardState,
   bank,
   onChangeBank,
   balances,
   onChangeUserBalance,
-}) {
+}) => {
   const [currentNumber, setCurrentNumber] = useState("");
   const [gameIsEnabled, setGameIsEnabled] = useState(true);
 
@@ -39,7 +39,7 @@ function GameEngine({
     return indexMap[currentSpinValue % 3];
   };
 
-  const doStepForUsers = (boardState, currentSpinValue) => {
+  const doStepForUsers = (currentSpinValue) => {
     const usersIndex = getCurrentUserIdBySpinValue(currentSpinValue);
     const currentPosition = boardState[usersIndex];
 
@@ -53,9 +53,14 @@ function GameEngine({
   };
 
   const doMove = () => {
-    const parsedNumber = parseInt(currentNumber, 10);
+    let parsedNumber = NaN;
+    try {
+      parsedNumber = parseInt(currentNumber, 10);
+    } catch (e) {
+      return setCurrentNumber("");
+    }
 
-    if (isNaN(parsedNumber) || parsedNumber < 0 || parsedNumber > 37)
+    if (parsedNumber.isNaN || parsedNumber < 0 || parsedNumber > 37)
       return setCurrentNumber("");
 
     setCurrentNumber("");
@@ -63,10 +68,11 @@ function GameEngine({
       giveOutPrizes(0, 3);
       return setGameIsEnabled(false);
     }
-    const wasFinalNumber = doStepForUsers(boardState, parsedNumber);
+    const wasFinalNumber = doStepForUsers(parsedNumber);
     if (wasFinalNumber) {
       return setGameIsEnabled(false);
     }
+    return undefined;
   };
 
   const resetGame = () => {
@@ -92,9 +98,11 @@ function GameEngine({
       <button type="button" onClick={doMove} disabled={!gameIsEnabled}>
         Move Users
       </button>
-      <button type="button" onClick={resetGame}>Reset Game</button>
+      <button type="button" onClick={resetGame}>
+        Reset Game
+      </button>
     </div>
   );
-}
+};
 
 export default GameEngine;
