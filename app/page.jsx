@@ -1,10 +1,13 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import GameField from "./components/game-field";
 import Results from "./components/results";
 import useUserMedia from "./useUserMedia";
 import useLocalStorage from "./useLocalStorage.ts";
+import top from "./assets/frame-top.png";
+import bottom from "./assets/frame-bottom.png";
 
 const MainPage = () => {
   const [usernames, setUsers] = useLocalStorage("usernames", ["", "", "", ""]); // users without names (first 3 is moving, last is 0)
@@ -23,10 +26,11 @@ const MainPage = () => {
         <GameField usernames={usernames} boardState={boardState} />
       </div>
       <div className="content">
-        <div id="stream">
-          {error ? (
-            <p>error running vudeo</p>
-          ) : (
+        <Results usernames={usernames} balances={balances} bank={bank} />
+
+        <div className="stream-box" id="stream">
+          <Image className="frame" id="frame-top" src={top} alt="*" />
+          {!error && (
             <video
               className="video"
               muted
@@ -38,8 +42,8 @@ const MainPage = () => {
               }}
             />
           )}
+          <Image className="frame" id="frame-bottom" src={bottom} alt="*" />
         </div>
-        <Results usernames={usernames} balances={balances} bank={bank} />
       </div>
     </div>
   );
