@@ -7,6 +7,11 @@ import black from "../../assets/black.png";
 import blue from "../../assets/blue.png";
 import light from "../../assets/light.png";
 
+const k = window.screen.width / window.screen.height;
+console.log(k);
+
+// if(k > 1.85)
+
 const mapping = {
   1: 1.2,
   2: 1.2,
@@ -24,7 +29,7 @@ const mapping = {
 
 const GameField = ({ usernames, boardState }) => (
   <div className="game-field">
-    <div className="chip" style={{ right: "15%" }}>
+    <div className="chip" style={{ right: "11%" }}>
       <Image className="chip-icon" src={gold} alt="*" />
       <span className="chip-name">{usernames[3]}</span>
     </div>
@@ -41,7 +46,7 @@ const GameField = ({ usernames, boardState }) => (
     <div
       className="chip"
       style={{
-        left: "58%",
+        left: "59%",
         transform: `translateY(calc(80vh / 14 * ${mapping[boardState[1]]}))`,
       }}
     >
@@ -51,7 +56,7 @@ const GameField = ({ usernames, boardState }) => (
     <div
       className="chip"
       style={{
-        left: "76%",
+        left: "80%",
         transform: `translateY(calc(80vh / 14 * ${mapping[boardState[2]]}))`,
       }}
     >

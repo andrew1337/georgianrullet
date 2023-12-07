@@ -1,0 +1,32 @@
+.usernames {
+  display: flex;
+  flex-direction: column;
+}
+
+.usernames * {
+  font-size: 2vw;
+}
+
+.usernames-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0.5vw;
+  color: #e8b01e;
+}
+
+.usernames-row > div {
+  text-align: center;
+  padding: 0.5vw;
+}
+
+.usernames-input {
+  background-color: #e8b01e;
+  padding: 0.5vw;
+}
+
+.reset {
+  padding: 1vw;
+  margin-top: 3vw;
+  align-self: end;
+  background: orange;
+}

@@ -1,8 +1,8 @@
 "use client";
 
 import useLocalStorage from "../useLocalStorage.ts";
-import { UserNames } from "../components/users-table/index";
-import { GameEngine } from "../components/game-engine/index";
+import { UserNames } from "./users-table/index";
+import { GameEngine } from "./game-engine/index";
 
 const Controls = () => {
   const [usernames, setUsers] = useLocalStorage("usernames", ["", "", "", ""]);
@@ -14,7 +14,7 @@ const Controls = () => {
   );
 
   return (
-    <div>
+    <div className="controls" style={{ backgroundColor: "#0e254c" }}>
       <UserNames usernames={usernames} setUsers={setUsers} />
       <GameEngine
         boardState={boardState}

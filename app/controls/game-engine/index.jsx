@@ -85,19 +85,21 @@ export const GameEngine = ({
   };
 
   return (
-    <div className="stepper">
-      <input
-        type="number"
-        min="0"
-        max="33"
-        placeholder="Enter number"
-        value={currentNumber}
-        disabled={!gameIsEnabled}
-        onChange={handleNumberInput}
-      />
-      <button type="button" onClick={doMove} disabled={!gameIsEnabled}>
-        Move Users
-      </button>
+    <div className="engine">
+      <div className="stepper">
+        <input
+          type="number"
+          min="0"
+          max="33"
+          placeholder="Enter number"
+          value={currentNumber}
+          disabled={!gameIsEnabled}
+          onChange={handleNumberInput}
+        />
+        <button type="button" onClick={doMove} disabled={!gameIsEnabled}>
+          Move Users
+        </button>
+      </div>
       <button type="button" onClick={resetGame}>
         Reset Game
       </button>

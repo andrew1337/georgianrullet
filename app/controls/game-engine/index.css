@@ -1,0 +1,41 @@
+.engine {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  margin-top: 3vh;
+}
+
+.engine * {
+  font-size: 2vw;
+}
+
+.stepper {
+  display: flex;
+  gap: 1vw;
+}
+
+.stepper > input {
+  background-color: #e8b01e;
+  padding: 0.5vw;
+  width: 15vw;
+}
+
+.stepper > button {
+  background-color: #e8b01e;
+  padding: 1vw;
+  background: #fff;
+  color: #0e254c;
+}
+
+.stepper > button:disabled {
+  background-color: grey;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.engine > button {
+  padding: 1vw;
+  margin-top: 3vw;
+  background: red;
+  align-self: end;
+}
