@@ -28,9 +28,11 @@ const useUserMedia = (constraints) => {
       if (stream?.stop) {
         stream.stop();
       }
+      // eslint-disable-next-line consistent-return
       return undefined;
     };
     getUserMedia();
+    // eslint-disable-next-line consistent-return
     return cancel;
   }, [constraints, stream, error]);
   return { stream, error };

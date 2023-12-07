@@ -91,9 +91,9 @@ export const GameEngine = ({
           type="number"
           min="0"
           max="33"
-          placeholder="Enter number"
+          placeholder="Enter number from 0 to 33"
           value={currentNumber}
-          disabled={!gameIsEnabled}
+          disabled={!gameIsEnabled || bank === 0}
           onChange={handleNumberInput}
         />
         <button type="button" onClick={doMove} disabled={!gameIsEnabled}>

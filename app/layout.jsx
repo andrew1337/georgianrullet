@@ -6,10 +6,10 @@ export const metadata = {
   description: "Rulette with numbers",
 };
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body suppressHydrationWarning>{children}</body>
-    </html>
-  );
-}
+const RootLayout = ({ children }) => (
+  <html lang="en">
+    <body suppressHydrationWarning>{children}</body>
+  </html>
+);
+
+export default RootLayout;

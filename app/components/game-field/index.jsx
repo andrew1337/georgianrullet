@@ -38,11 +38,11 @@ const GameField = ({ usernames, boardState }) => {
       const { top, bottom } = $box.current.getBoundingClientRect();
       setHeight(bottom - top);
     }
-  }, [$box.current]);
+  }, [$box.current]); // eslint-disable-line
 
   useEffect(() => {
     setPosition(boardState.map((el, i) => countMove(mapping[boardState[i]])));
-  }, [boardState]);
+  }, [boardState]); // eslint-disable-line 
 
   return (
     <div className="game-field" ref={$box}>
