@@ -40,11 +40,13 @@
 
 .bank-block {
   flex: 1;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1vw;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5vw;
   color: #e8b01e;
+  text-align: center;
 }
 
 .sum {
@@ -54,5 +56,6 @@
 }
 
 .gel {
+  font-size: 2.5vw;
   color: #e8b01e;
 }
