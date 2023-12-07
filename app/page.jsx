@@ -6,6 +6,7 @@ import GameField from "./components/game-field";
 import Results from "./components/results";
 import useUserMedia from "./useUserMedia";
 import useLocalStorage from "./useLocalStorage.ts";
+import frame from "./assets/frame.png";
 import top from "./assets/frame-top.png";
 import bottom from "./assets/frame-bottom.png";
 
@@ -31,7 +32,7 @@ const MainPage = () => {
         />
 
         <div className="stream-box" id="stream">
-          <Image className="frame" id="frame-top" src={top} alt="*" />
+          <Image className="frame" id="frame-top" src={frame} alt="*" />
           {!error && (
             <video
               className="video"
@@ -44,7 +45,7 @@ const MainPage = () => {
               }}
             />
           )}
-          <Image className="frame" id="frame-bottom" src={bottom} alt="*" />
+          {/* <Image className="frame" id="frame-bottom" src={bottom} alt="*" /> */}
         </div>
       </div>
     </div>

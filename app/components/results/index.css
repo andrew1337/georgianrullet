@@ -1,12 +1,58 @@
 .results {
   display: flex;
-  flex-direction: row;
-  font-size: 6vh;
   justify-content: space-between;
   align-items: center;
+  gap: 4vw;
+  font-size: 3.5vh;
 }
 
 .table {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  color: #e8b01e;
+  gap: 0.3vw;
+}
+
+.row {
+  display: grid;
+  gap: 0.3vw;
+  grid-template-columns: 10vw repeat(4, 8vw);
+}
+
+.name {
+  text-align: right;
+  padding: 0.5vw;
+  margin-right: 1vw;
+}
+
+.count {
+  text-align: center;
+  padding: 0.5vw;
+  border: 2px solid #e8b01e;
+  background-color: #0e254c;
+}
+
+.bank {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bank-block {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+  color: #e8b01e;
+}
+
+.sum {
+  font-size: 3vw;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.gel {
+  color: #e8b01e;
 }
