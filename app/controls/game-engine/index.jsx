@@ -77,13 +77,11 @@ export const GameEngine = ({
 
   const resetGame = () => {
     setCurrentNumber("");
-    onChangeBoardState([1, 2, 3]);
     setGameIsEnabled(true);
+    onChangeBoardState([1, 2, 3]);
     onChangeBank(12000);
     onChangeUserBalance([2000, 2000, 2000, 2000]);
-    // remove users
   };
-
   return (
     <div className="engine">
       <div className="stepper">
@@ -96,7 +94,11 @@ export const GameEngine = ({
           disabled={!gameIsEnabled || bank === 0}
           onChange={handleNumberInput}
         />
-        <button type="button" onClick={doMove} disabled={!gameIsEnabled}>
+        <button
+          type="button"
+          onClick={doMove}
+          disabled={!gameIsEnabled || bank === 0}
+        >
           Move Users
         </button>
       </div>
