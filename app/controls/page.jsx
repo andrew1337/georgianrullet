@@ -1,10 +1,10 @@
 "use client";
 
 import useLocalStorage from "../useLocalStorage.ts";
-import UserNames from "../components/users-table/index.jsx";
-import GameEngine from "../components/game-engine/index.jsx";
+import { UserNames } from "../components/users-table/index";
+import { GameEngine } from "../components/game-engine/index";
 
-export default function Controls() {
+const Controls = () => {
   const [usernames, setUsers] = useLocalStorage("usernames", ["", "", "", ""]);
   const [boardState, setBoardState] = useLocalStorage("boardState", [1, 2, 3]);
   const [bank, setBank] = useLocalStorage("bank", 12000);
@@ -26,4 +26,6 @@ export default function Controls() {
       />
     </div>
   );
-}
+};
+
+export default Controls;

@@ -1,7 +1,7 @@
 import "./index.css";
 import React, { useState } from "react";
 
-const GameEngine = ({
+export const GameEngine = ({
   boardState,
   onChangeBoardState,
   bank,
@@ -104,5 +104,3 @@ const GameEngine = ({
     </div>
   );
 };
-
-export default GameEngine;

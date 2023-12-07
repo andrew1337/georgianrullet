@@ -1,9 +1,8 @@
 import React from "react";
 import "./index.css";
 
-const UserNames = ({ usernames, setUsers }) => {
+export const UserNames = ({ usernames, setUsers }) => {
   const handleUserInput = (event, index) => {
-    console.log(index, event.target.value);
     setUsers(
       usernames.map((user, i) => (i === index ? event.target.value : user)),
     );
@@ -43,5 +42,3 @@ const UserNames = ({ usernames, setUsers }) => {
     </div>
   );
 };
-
-export default UserNames;

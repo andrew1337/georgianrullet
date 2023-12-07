@@ -116,7 +116,7 @@ h6 {
   align-items: center;
   justify-content: center;
   width: max-content;
-  min-width: 65%;
+  min-width: 700px;
   margin: 0 auto;
 }
 
@@ -124,6 +124,7 @@ h6 {
   position: absolute;
   width: -webkit-fill-available;
   width: available;
+  max-height: 48%;
   margin: 0 -2vw 0 -1.4vw;
 }
 
