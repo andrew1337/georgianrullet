@@ -14,9 +14,7 @@ const MainPage = () => {
 
   return (
     <div className="main">
-      <div className="desc">
-        <GameField usernames={usernames} boardState={boardState} />
-      </div>
+      <GameField usernames={usernames} boardState={boardState} />
       <div className="content">
         <Results
           usernames={usernames}

@@ -1,12 +1,13 @@
 .game-field {
   display: flex;
-  height: 80vh;
-  background: url('../../assets/rulet.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-width: 384px;
+  align-items: center;
+  justify-content: center;
   position: relative;
+}
+
+.rulet {
+  height: auto;
+  max-width: 100%;
 }
 
 .chip {
@@ -15,6 +16,7 @@
   align-items: center;
   justify-content: center;
   position: absolute;
+  top: 0;
   transition: all 1s ease-out;
 }
 
@@ -26,7 +28,7 @@
 .chip-name {
   position: absolute;
   top: 37%;
-  font-size: 1.5vh;
+  font-size: 1vw;
   width: max-content;
   color: #fce4bf;
   padding: 2px 3px;

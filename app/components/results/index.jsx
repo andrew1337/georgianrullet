@@ -8,7 +8,6 @@ const Results = ({ usernames, balances, bank, boardState }) => {
       <div className="table">
         {indexes.map((index) => (
           <div className="row" key={index}>
-            {console.log(usernames[index])}
             <div className="name">{usernames[index]}</div>
             <div className="count">2000</div>
             <div className="count">
