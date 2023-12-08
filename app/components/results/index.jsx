@@ -14,7 +14,7 @@ const Results = ({ usernames, balances, bank, boardState }) => {
               {boardState[index] >= 13 ? 1000 : "\u00A0"}
             </div>
             <div className="count">
-              {boardState[index] >= 25 ? 2000 : "\u00A0"}
+              {boardState[index] >= 25 ? 1000 : "\u00A0"}
             </div>
             <div className="count">{balances[index]}</div>
           </div>
