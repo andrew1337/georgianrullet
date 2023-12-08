@@ -18,10 +18,8 @@ export const GameEngine = ({
 
   const giveOutPrizes = (currentPosition, userIndex) => {
     let amount;
-    if ([1, 2, 3].includes(currentPosition)) {
+    if ([1, 2, 3, 13, 14, 15].includes(currentPosition)) {
       amount = 1000;
-    } else if ([13, 14, 15].includes(currentPosition)) {
-      amount = 2000;
     } else if ([0, 25, 26, 27].includes(currentPosition)) {
       amount = bank;
     }
