@@ -1,5 +1,5 @@
 1:HL["/georgianrullet/_next/static/css/8673f4db29b22469.css","style",{"crossOrigin":""}]
-0:["dAt-qmgcLBwNWCoZESEVi",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/georgianrullet/_next/static/css/8673f4db29b22469.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
+0:["CYdTP-HA0vd8XgDZG3Zat",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/georgianrullet/_next/static/css/8673f4db29b22469.css","precedence":"next","crossOrigin":""}]],"$L3"]]]]
 4:HL["/georgianrullet/_next/static/css/8806daebdf938852.css","style",{"crossOrigin":""}]
 5:I[6954,[],""]
 6:I[7264,[],""]
